@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>使用组件化思想来修改 TodoList</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="" />
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+    	<input type="text" v-model="inputValue" />
+    	<button v-on:click="handleClick">提交</button>
+    	<ul>
+    		<todo-item v-bind:content="item" v-for="item in list">{{ item }}</todo-item>
+    	</ul>
+    </div>
+    <script>
+		// 定义全局组件 TodoItem
+    	// Vue.component("TodoItem", {
+    	// 	props: ['content'],
+    	// 	template: "<li>{{ content }}</li>"
+    	// });
+
+    	// 定义局部组件 TodoItem
+    	let TodoItem = {
+    		props: ['content'],
+    		template: "<li>{{ content }}</li>"
+    	};
+
+    	let app = new Vue({
+    		el: "#app",
+    		// 注册定义的局部组件
+    		components: {
+    			TodoItem: TodoItem
+    		},
+    		data: {
+    			list: [],
+    			inputValue: ''
+    		},
+    		methods: {
+    			handleClick: function() {
+    				this.list.push(this.inputValue);
+    				this.inputValue = '';
+    			}
+    		}
+    	})
+    </script>
+</body>
+</html>

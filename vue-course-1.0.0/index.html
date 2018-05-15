@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>Hello world</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="" />
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">{{ message }}</div>
+    <script>
+    	let app = new Vue({
+    		el: "#app",
+    		data: {
+    			message: "Hello world!"
+    		}
+    	});
+
+    	setTimeout(function() {
+    		app.$data.message = "bye world!";
+    	}, 2000);
+    </script>
+</body>
+</html>
